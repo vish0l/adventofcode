@@ -9,8 +9,10 @@ import (
 	"sort"
 )
 
+const inputFileName = "input.txt"
+
 func main() {
-	inputLines, err := readInputFile("input.txt")
+	inputLines, err := readInputFile(inputFileName)
 	if err != nil {
 		slog.Error("Error reading input file", "error", err.Error())
 		return
@@ -31,8 +33,13 @@ func main() {
 }
 
 func CalculateMinDifferenceSum(listOne, listTwo []int) float64 {
-	sort.Ints(listOne)
-	sort.Ints(listTwo)
+	if !sort.IntsAreSorted(listOne) {
+		sort.Ints(listOne)
+	}
+
+	if !sort.IntsAreSorted(listTwo) {
+		sort.Ints(listTwo)
+	}
 
 	var results float64
 	for i := 0; i < len(listOne); i++ {
@@ -51,9 +58,7 @@ func CalculateSumWithOccurrences(listOne, listTwo []int) int {
 	var results int
 
 	for _, v := range listOne {
-		if listTwoMap[v] > 0 {
-			results += listTwoMap[v] * v
-		}
+		results += listTwoMap[v] * v
 	}
 
 	return results

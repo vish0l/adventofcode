@@ -27,7 +27,6 @@ func CalculateMinDifferenceSum(listOne, listTwo []int) float64 {
 }
 
 func CalculateSumWithOccurrences(listOne, listTwo []int) int {
-
 	listTwoMap := make(map[int]int)
 	for _, v := range listTwo {
 		listTwoMap[v]++
@@ -37,10 +36,9 @@ func CalculateSumWithOccurrences(listOne, listTwo []int) int {
 
 	for _, v := range listOne {
 		if listTwoMap[v] > 0 {
-			results += (listTwoMap[v] * v)
+			results += listTwoMap[v] * v
 		}
 	}
 
 	return results
-
 }
